@@ -1,40 +1,46 @@
-import { Action } from "redux";
-import { RootState } from "./store";
+import { Action } from 'redux';
+import { RootState } from './store';
 
 interface RecorderState {
-    dateStart: string;
-
+  dateStart: string;
 }
 
 const START = 'recorder/start';
 const STOP = 'recorder/stop';
 
-type StartAction = Action<typeof START>
-type StopAction = Action<typeof STOP>
+type StartAction = Action<typeof START>;
+type StopAction = Action<typeof STOP>;
 
-export const start = (): StartAction => (
-    { type: START }
-)
+export const start = (): StartAction => ({
+  type: START
+});
 
-export const stop = (): StopAction => (
-    { type: STOP }
-)
+export const stop = (): StopAction => ({
+  type: STOP
+});
 
 export const selectRecorderState = (rootState: RootState) => rootState.recorder;
-export const selectDateStart = (rootState: RootState) => selectRecorderState(rootState).dateStart;
+export const selectDateStart = (rootState: RootState) =>
+  selectRecorderState(rootState).dateStart;
 
 const initialState: RecorderState = {
-    dateStart: ''
-}
+  dateStart: ''
+};
 
-const recorderReducer = (state: RecorderState = initialState, action: StartAction | StopAction) => {
-    switch (action.type) {
-        case START:
-            return { ...state, dateStart: new Date().toISOString() };
-        case STOP:
-            return { ...state, dateStart: '' }
-        default: return state;
-    }
-}
+const recorderReducer = (
+  state: RecorderState = initialState,
+  action: StartAction | StopAction
+) => {
+  switch (action.type) {
+    case START:
+      return { ...state, dateStart: new Date().toISOString() };
 
-export default recorderReducer
+    case STOP:
+      return { ...state, dateStart: '' };
+
+    default:
+      return state;
+  }
+};
+
+export default recorderReducer;
