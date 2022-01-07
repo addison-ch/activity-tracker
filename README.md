@@ -1,6 +1,7 @@
 # Simple activity tracker
 
-Built using React and Redux. data stored on a fake server using json-server. 
+Built using React and Redux. Data stored on a fake server using json-server. 
+Run a timer to start recording an activity you are doing. Once you stop recording, a new entry is logged on the calendar.
 
 
 ---
